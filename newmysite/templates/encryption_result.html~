@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}результат шифрования информации{% endblock %}
+
+{% block h1 %}Страница результата шифрования данных{% endblock %}
+
+{% block content %}
+<div class="main">  
+    <div class="img_result_block"> 
+        <p style="font-weight: bold;">Исходное изображение:</p> <img src={% static "img_before.bmp" %}>
+    </div>
+    <div class="img_result_block"> 
+        <p style="font-weight: bold;">Результат шифрования:</p> <img src={% static "img_after.bmp" %}> 
+    </div>
+    <p><a class="myButton" href={% static "img_after.bmp" %}>Скачать результирующее изображение </a></p>
+</div>
+{% endblock %}

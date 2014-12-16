@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Шифрование информации{% endblock %}
+
+{% block h1 %}Страница шифрования данных{% endblock %}
+
+{% block content %}
+<div class="main">
+    <form action="" enctype="multipart/form-data" method="post">
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Зашифровать" class="myButton">
+    </form>
+</div>
+{% endblock %}

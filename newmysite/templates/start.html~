@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Главная страница{% endblock %}
+
+
+{% block content %}
+
+<a href="/encryption/" class="myButton">Начать шифрование</a>
+<a href="/decryption/" class="myButton">Начать расшифрование</a>
+
+
+{% endblock %}
