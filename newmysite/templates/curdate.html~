@@ -1,4 +1,0 @@
-<html>
-
-<h1>{{ now_time }}</h1>
-</html>
