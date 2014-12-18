@@ -1,4 +1,3 @@
 Django==1.7.1
 MySQL-python==1.2.3
 PIL==1.1.7
--e git+https://github.com/aloskutov-ki11/django_code.git#egg=newmysite
