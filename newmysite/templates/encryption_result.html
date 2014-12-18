@@ -7,13 +7,12 @@
 {% block h1 %}Страница результата шифрования данных{% endblock %}
 
 {% block content %}
-<div class="main">  
+<div class="main">
     <div class="img_result_block"> 
-        <p style="font-weight: bold;">Исходное изображение:</p> <img src={% static "img_before.bmp" %}>
+        <p style="font-weight: bold;">Исходное изображение:</p> <img src="data:image/bmp;base64,{{ base64_img_before }}">
     </div>
     <div class="img_result_block"> 
-        <p style="font-weight: bold;">Результат шифрования:</p> <img src={% static "img_after.bmp" %}>
-        <p><a class="myButton" href={% static "img_after.bmp" %}>Скачать результирующее изображение </a></p>
+        <p style="font-weight: bold;">Результат шифрования:</p> <img src="data:image/bmp;base64,{{ base64_img_after }}">
     </div>
 </div>
 {% endblock %}
