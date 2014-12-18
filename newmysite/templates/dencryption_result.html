@@ -7,7 +7,18 @@
 {% block h1 %}Страница результата дешифрования данных{% endblock %}
 
 {% block content %}
+
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+   $( document ).ready(function() {
+    enc = window.atob('{{ decrypted_text }}');
+    $( "textarea" ).text(enc);
+  });
+  </script>
+  
 <div class="main">  
-    <a href={% static "decrypted" %}>Скачать результат дешифрования</a>
+    <textarea id="text" cols=120 rows=40></textarea>
 </div>
+
 {% endblock %}
