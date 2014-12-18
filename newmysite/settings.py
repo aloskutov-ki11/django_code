@@ -89,7 +89,8 @@ MEDIA_URL = '/media/'
 #ADMIN_MEDIA_PREFIX = '/media/'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static_').replace('\\','/')
+#STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static_').replace('\\','/')
+STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     'newmysite/static/',
 )
