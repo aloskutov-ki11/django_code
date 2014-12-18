@@ -1,5 +1,5 @@
 --allow-all-external
---allow-unverified
+--allow-unverified PIL
 Django==1.7.1
 PIL==1.1.7
 dj-database-url==0.3.0
