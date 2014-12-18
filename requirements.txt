@@ -1,7 +1,8 @@
 --allow-all-external
 --allow-unverified PIL
 Django==1.7.1
--e hg+https://bitbucket.org/etienned/pil-2009-raclette/#egg=PIL
+libjpeg8-dev>=0
+PIL==1.1.7
 dj-database-url==0.3.0
 dj-static==0.0.6
 django-toolbelt==0.0.1
