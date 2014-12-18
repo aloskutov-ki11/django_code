@@ -27,28 +27,25 @@ def read_from_file(file_puth):
     return data
             
 def encrypt(request):
+    errors = []
     if request.method == 'POST':
         form = encryptForm(request.POST, request.FILES)
         if form.is_valid():
             cd = form.cleaned_data
             
             data_puth = 'newmysite/media/' + request.FILES['data_file'].name
-            vigenere_key_path = 'newmysite/media/' + request.FILES['vigenere_key'].name
-            aes_key_path = 'newmysite/media/' + request.FILES['aes_key'].name
             img_puth = 'newmysite/media/' + request.FILES['img_file'].name
                      
             handle_uploaded_file(request.FILES['data_file'], data_puth)
-            handle_uploaded_file(request.FILES['vigenere_key'], vigenere_key_path)
-            handle_uploaded_file(request.FILES['aes_key'], aes_key_path)
             handle_uploaded_file(request.FILES['img_file'], img_puth)
                                  
             data = read_from_file(data_puth)
-            vigenere_key = read_from_file(vigenere_key_path)
-            aes_key = read_from_file(aes_key_path)
+            vigenere_key = request.POST['vigenere_key']
+            aes_key = request.POST['aes_key']
             
-            aes_key = aes_key[0:len(aes_key)-1]
             if len(aes_key) != 16:
-                return render_to_response('encrypt.html', {'form': form, 'errors': 'Неверная длина ключа для шифрования AES!'})
+                errors.append('Неверная длина ключа для шифрования AES!')
+                return render_to_response('encrypt.html', {'form': form, 'errors': errors})
                 
             result = vigenere_cipher(data, vigenere_key, operator.add)
             result = aes_cipher(result, aes_key, '-c')
@@ -69,6 +66,7 @@ def encrypt(request):
     return render_to_response('encrypt.html', {'form': form})
                
 def dencrypt(request):
+    errors = []
     if request.method == 'POST':
         form = decryptForm(request.POST, request.FILES)
         if form.is_valid():
@@ -78,16 +76,16 @@ def dencrypt(request):
             aes_key_path = 'newmysite/media/' + request.FILES['aes_key'].name
             img_puth = 'newmysite/media/' + request.FILES['img_file'].name
             
-            handle_uploaded_file(request.FILES['vigenere_key'], vigenere_key_path)
-            handle_uploaded_file(request.FILES['aes_key'], aes_key_path)
+            vigenere_key = request.POST['vigenere_key']
+            aes_key = request.POST['aes_key']
             handle_uploaded_file(request.FILES['img_file'], img_puth)
             
             vigenere_key = read_from_file(vigenere_key_path)
             aes_key = read_from_file(aes_key_path)
-            
-            aes_key = aes_key[0:len(aes_key)-1]
+
             if len(aes_key) != 16:
-                return render_to_response('dencrypt.html', {'form': form, 'errors': 'Неверная длина ключа для шифрования AES!'})
+                errors.append('Неверная длина ключа для шифрования AES!')
+                return render_to_response('dencrypt.html', {'form': form, 'errors': errors})
             
             img = Image.open(img_puth)
             result = lsb_method('', img, '-e')
@@ -104,13 +102,3 @@ def dencrypt(request):
         form = decryptForm()
 
     return render_to_response('dencrypt.html', {'form': form})
-
-
-
-
-
-
-
-
-
-
