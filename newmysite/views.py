@@ -8,6 +8,8 @@ from PIL import Image, ImageDraw
 
 from .forms import *
 
+import base64
+
 from .vigenere import *
 from .aes import *
 from .lsb import *
@@ -59,7 +61,20 @@ def encrypt(request):
             img = lsb_method(result, img, '-h')
             img.save("newmysite/static/img_after.bmp")
             
-            return render_to_response('encryption_result.html',)
+            
+            F = open("newmysite/static/img_after.bmp")
+            data = F.read()
+            F.close()
+            base64_img_after = base64.b64encode(data)
+            
+            F = open("newmysite/static/img_before.bmp")
+            data = F.read()
+            F.close()
+            base64_img_before = base64.b64encode(data)
+            
+            
+                        
+            return render_to_response('encryption_result.html', {'base64_img_before': base64_img_before, 'base64_img_after': base64_img_after})
     else:
         form = encryptForm()
 
@@ -87,12 +102,12 @@ def dencrypt(request):
 
             result = aes_cipher(result, aes_key, '-d')
             result = vigenere_cipher(result, vigenere_key, operator.sub)
-
-            outF = open("newmysite/static/decrypted", "w")
-            outF.write(result)
-            outF.close()
-        
-            return render_to_response('dencryption_result.html',)
+                 
+            result = base64.encodestring(result)
+            
+            result = result.replace('\n','')
+            
+            return render_to_response('dencryption_result.html', {'decrypted_text':result})
     else:
         form = decryptForm()
 
