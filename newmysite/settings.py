@@ -87,6 +87,7 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 #MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media').replace('\\','/')
 #ADMIN_MEDIA_PREFIX = '/media/'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static_').replace('\\','/')
