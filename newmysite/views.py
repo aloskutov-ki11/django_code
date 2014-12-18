@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 import operator
-import Image, ImageDraw
+from PIL import Image, ImageDraw
 
 from .forms import *
 
