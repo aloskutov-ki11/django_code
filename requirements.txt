@@ -1,7 +1,7 @@
 --allow-all-external
---allow-unverified PIL
+--allow-unverified Pillow
 Django==1.7.1
-PIL==1.1.7
+Pillow==2.6.1
 dj-database-url==0.3.0
 dj-static==0.0.6
 django-toolbelt==0.0.1
