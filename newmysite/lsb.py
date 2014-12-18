@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import Image, ImageDraw
+from PIL import Image, ImageDraw
 
 
 def changeEndBits(byte, bits):
