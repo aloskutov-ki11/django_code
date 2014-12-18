@@ -72,17 +72,12 @@ def dencrypt(request):
         if form.is_valid():
             cd = form.cleaned_data
             
-            vigenere_key_path = 'newmysite/media/' + request.FILES['vigenere_key'].name
-            aes_key_path = 'newmysite/media/' + request.FILES['aes_key'].name
             img_puth = 'newmysite/media/' + request.FILES['img_file'].name
             
             vigenere_key = request.POST['vigenere_key']
             aes_key = request.POST['aes_key']
             handle_uploaded_file(request.FILES['img_file'], img_puth)
-            
-            vigenere_key = read_from_file(vigenere_key_path)
-            aes_key = read_from_file(aes_key_path)
-
+        
             if len(aes_key) != 16:
                 errors.append('Неверная длина ключа для шифрования AES!')
                 return render_to_response('dencrypt.html', {'form': form, 'errors': errors})
